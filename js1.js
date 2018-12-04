@@ -11,10 +11,10 @@ let win = 0, lose = 0, krit = 0, hell = 100;
 let time;
 
 let clickListener = function(){checkCollusion()};
-document.addEventListener("click", clickListener);
+//document.addEventListener("click", clickListener);
 
 let mouseListener = function(event){mouseMoveFunc(event)};
-document.addEventListener("mousemove", mouseListener);
+//document.addEventListener("mousemove", mouseListener);
 
 let keyListener = function(event){rest(event)};
 
@@ -95,4 +95,5 @@ function spawnCel(){
 	time = setTimeout(mlose, 1000);
 }
 
-spawnCel();
+//spawnCel();
+document.addEventListener("keydown", keyListener);

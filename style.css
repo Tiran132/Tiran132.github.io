@@ -12,10 +12,12 @@ img{
 	width: 60px;
 	height: 60px;
 	cursor: none;
+	display: none;
 }
 #cel{
 	width: 120px;
 	height: 120px;
+	display: none;
 }
 #sky{
 	position: absolute;
@@ -24,6 +26,7 @@ img{
 	width: 100%;
 	height: 58%;
 	background-color: #74b9ff;
+	display: none;
 }
 
 #grass{
@@ -33,6 +36,7 @@ img{
 	width: 100%;
 	height: 42%;
 	background-color: #43A047;
+	display: none;
 }
 #tablo{
 	position: absolute;
@@ -43,6 +47,7 @@ img{
 	text-align: center;
 	height: 60px;
 	width: 100%;
+	display: none;
 	/*font-weight: bold;*/
 }
 #score{
@@ -72,7 +77,7 @@ img{
 }
 #end{
 	position: absolute;
-	display: none;
+	display: block;
 	left: 0;
 	top: 23%;
 	height: auto;
@@ -96,4 +101,14 @@ img{
 }
 #whatto{
 	font-size: 30pt;
+}
+#prav{
+	position: absolute;
+	text-align: center;
+	font-size: 20pt;
+	/*font-weight: bold;*/
+	left: 0;
+	width: 100%;
+	color: white;
+	background-color: #2c3e50;
 }
