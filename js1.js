@@ -9,6 +9,7 @@ const end = document.getElementById('end');
 
 let win = 0, lose = 0, krit = 0, hell = 100;
 let time;
+let inter;
 
 let clickListener = function(){checkCollusion()};
 //document.addEventListener("click", clickListener);
@@ -36,6 +37,25 @@ function rest(event){
 		lose = 0;
 		krit = 0;
 		spawnCel();
+		inter = setInterval(vibcel, 50);
+	}
+}
+
+function vibcel(){
+	if(Math.round(Math.random()) == 1)
+	{
+		cel.style.left = cel.offsetLeft + 2 + 'px'
+	}
+	else{
+		cel.style.left = cel.offsetLeft - 2 + 'px';
+	}
+
+	if(Math.round(Math.random()) == 1)
+	{
+		cel.style.top = cel.offsetTop + 2 + 'px'
+	}
+	else{
+		cel.style.top = cel.offsetTop - 2 + 'px';
 	}
 }
 
@@ -78,6 +98,7 @@ function mlose(){
 		document.removeEventListener("click", clickListener);
 		document.removeEventListener("mousemove", mouseListener);
 		document.addEventListener("keydown", keyListener);
+		clearInterval(inter);
 	}else{
 		spawnCel();
 	}
@@ -87,7 +108,7 @@ function mlose(){
 
 function spawnCel(){
 	clearTimeout(time);
-	cel.style.left=Math.random()*(window.innerWidth-120) + 'px' ;
+	cel.style.left=Math.random()*(window.innerWidth-120) + 'px';
 	cel.style.top=Math.random()*(window.innerHeight-120) + 'px';
 	score.innerHTML = win + ' : ' + lose + '  NUM OF CRITICAL HITS ' + krit;
 	hellth.style.width = hell + 'px';
@@ -97,3 +118,4 @@ function spawnCel(){
 
 //spawnCel();
 document.addEventListener("keydown", keyListener);
+

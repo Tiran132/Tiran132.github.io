@@ -9,10 +9,13 @@ img{
 	position: absolute;
 }
 #pric{
+	position: absolute;
+	background-image: url('img/pric.png');
 	width: 60px;
 	height: 60px;
 	cursor: none;
 	display: none;
+	background-size: cover;
 }
 #cel{
 	width: 120px;
