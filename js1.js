@@ -119,3 +119,7 @@ function spawnCel(){
 //spawnCel();
 document.addEventListener("keydown", keyListener);
 
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    document.location.href = "andrasminka/index.html";
+  } else {}
