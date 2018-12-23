@@ -88,7 +88,7 @@ function mlose(){
 	if (hell > 0) {
 		hell-=20;
 		if (hell == 0) {
-		end.innerHTML = '<span id="info">' + 'NUM OF HITS IN TARGET: ' + win + '<br>' + 'NUM OF CRITICAL HITS: ' + krit + '</span><br>GAME OVER!<br><span id="whatto"> IF YOU WANT TO RESTART THE GAME PRESS SPACE</span>';
+		end.innerHTML = '<span id="info">' + 'NUM OF HITS IN TARGET: ' + win + '<br>' + 'NUM OF CRITICAL HITS: ' + krit + '</span><br>GAME OVER!<br><span id="whatto"> IF YOU WANT TO RESTART THE GAME CLICK HERE</span>';
 		cel.style.display = 'none';
 		pric.style.display = 'none';
 		tablo.style.display = 'none';
@@ -113,7 +113,7 @@ function spawnCel(){
 	score.innerHTML = win + ' : ' + lose + '  NUM OF CRITICAL HITS ' + krit;
 	hellth.style.width = hell + 'px';
 	hellth.innerHTML = hell;
-	time = setTimeout(mlose, 1000);
+	time = setTimeout(mlose, 800);
 }
 
 //spawnCel();
