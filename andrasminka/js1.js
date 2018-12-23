@@ -117,5 +117,5 @@ function spawnCel(){
 }
 
 //spawnCel();
-document.addEventListener("keydown", keyListener);
+//document.addEventListener("keydown", keyListener);
 
