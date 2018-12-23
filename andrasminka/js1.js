@@ -113,7 +113,7 @@ function spawnCel(){
 	score.innerHTML = win + ' : ' + lose + '  NUM OF CRITICAL HITS ' + krit;
 	hellth.style.width = hell + 'px';
 	hellth.innerHTML = hell;
-	time = setTimeout(mlose, 800);
+	time = setTimeout(mlose, 1050);
 }
 
 //spawnCel();
