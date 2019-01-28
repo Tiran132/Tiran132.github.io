@@ -1,22 +1,39 @@
 button{
-	height: 80px;
+	height: 100px;
 	background-color: #000;
 	border: none;
 	color: #fff;
-	font-size: 60px;
-	margin: 10px;
+	font-size: 20px;
+	margin: 0 10px;
+	margin-top: 2px;
+	text-transform: uppercase;
+	transition: 0.2s ease;
+}
+.container{
+	display: flex;
 }
 .cart{
+	font-size: 20px;
 	position: absolute;
 	top: 10px;
 	right: 10px;
 	background-color: #000;
 	color: #fff;
-	padding: 4px;
+	padding: 5px;
 }
 .tov{
 	height: 70px;
 }
 #buylist{
 	display: none;
+}
+.m img{
+	height: 100px;
+}
+.m{
+	display: flex;
+	flex-direction: row;
+}
+button:hover{
+	background-color: red;
 }
