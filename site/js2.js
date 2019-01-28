@@ -1,6 +1,5 @@
 let page = document.getElementById('bag');
 let buylist = document.getElementById('buylist');
-document.getElementById("sub").addEventListener("click", clr());
 
 function load(){
 	page.innerHTML = '';
