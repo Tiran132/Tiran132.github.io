@@ -17,3 +17,6 @@ button{
 .tov{
 	height: 70px;
 }
+#buylist{
+	display: none;
+}
