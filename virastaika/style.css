@@ -29,7 +29,7 @@ body{
 	box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.4);
 }
 .hed2{
-	/*display: none;*/
+	display: none;
 	position: relative;
 	background-color: #383838;
 	box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.4);
@@ -378,7 +378,7 @@ footer{
 	opacity: 1;
 	width: 150px;
 }
-/*@media screen and (max-width: 900px){
+@media screen and (max-width: 900px){
 	.hed1{
 		display: none;
 	}
@@ -386,4 +386,4 @@ footer{
 		display: block;
 		flex-wrap: wrap;
 	}
-}*/
+}
