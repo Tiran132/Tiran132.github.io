@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="js/jquery.js"></script>
@@ -24,29 +23,31 @@
       <i class="ic fas fa-search"></i>
     </div>
         <div class="l1">
-          0<i class="fas fa-shopping-cart"></i>
+          <span class="col_tovs">0</span><i class="fas fa-shopping-cart"></i>
         </div>
       </div>
     </header>
     <header class="hed2">
       <div style="display: flex; width: 100%;">
-      <div style="display: flex; flex: 3;">
+        <div style="width: 20vw; display: flex; flex-direction: column;">
         <a href="#" class="h2_l">
           <i class="fas fa-chevron-circle-left"></i>
         </a>
+        <div class="h2_l1">
+            <span class="col_tovs">0</span><i class="fas fa-shopping-cart"></i>
+          </div>
+      </div>
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        
       <div class="h2_logo">
         Вырастайка
       </div>
-      </div>  
-      <div style="display: flex; flex: 2; justify-content: flex-end;">
         <div class="h2_cart">
           <div class="h2_search">
             <input type="text" name="searching" class="h2_searching" placeholder="Поиск по разделу">
             <i class="h2_ic fas fa-search"></i>
           </div>
-          <div class="h2_l1">
-            0<i class="fas fa-shopping-cart"></i>
-          </div>
+          
         </div>
       </div>
       </div>
@@ -163,15 +164,15 @@
   
 
 
-  <footer>
+  <footer class="f1">
     <a href="#" class="dostavka">
         <span id="d">О доставке</span>
     </a>
     <div class="kontakts">
         Контакты:
         <div class="l2">
-          <span style="position: relative;"><span class="post">Почта</span><span class="post_after">administrator@virastaikatomsk.ru</span></span><br>
-          <span style="position: relative;"><span class="phone">Телефон </span><span class="phone_after">+79050892388</span></span>
+          <span style="position: relative;"><span class="post">Почта...</span><span class="post_after">administrator@virastaikatomsk.ru</span></span><br>
+          <span style="position: relative;"><span class="phone">Телефон...</span><span class="phone_after">+79050892388</span></span>
         </div>
     </div>
     <div class="social">
@@ -182,7 +183,31 @@
         </div>
     </div>
   </footer>
-
+  <footer class="f2">
+    <a href="#" class="dostavka2">
+        <span id="d">О доставке</span>
+    </a>
+    <div class="konts">
+    <div class="kontakts2">
+        Контакты:
+        <div class="fl2">
+          <span style="position: relative;"><span class="post">Почта</span>
+          <span class="post_after2">administrator@virastaikatomsk.ru</span>
+        </span><br>
+          <span style="position: relative;"><span class="phone">Телефон </span>
+          <span class="phone_after2">+79050892388</span>
+        </span>
+        </div>
+    </div>
+    <div class="social2">
+        Наши соц-сети:
+        <div class="fl2">
+          <span>ВК: </span><a target="_blank" href="https://vk.com/virastaikatomsk"><i class="fab fa-vk"></i></a><br>
+          <span>Однокласники: </span><a target="_blank" href="https://ok.ru/profile/556729655231"><i class="fab fa-odnoklassniki"></i></a>
+        </div>
+    </div>
+    </div>
+  </footer>
 
 
 
