@@ -1,24 +1,214 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Rasminka</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
-</head>
-<body>
-	<div id="sky"></div>
-	<div id="grass"></div>
-	<div id="tablo">
-		<div id="hellbox">
-			<div id="hell"></div>
-		</div>
-		<div id="score"></div>
-	</div>
-	<img src="img/cel.png" id="cel">
-	<div id="pric"></div>
-	<!--<img src="img/pric.png" id="pric">-->
-	<div id="end">TO START THE GAME PRESS SPACE<br><span id="prav">IN THE GAME YOU WILL JUST HAVE TO CLICK ON TARGETS</span></div>
-	<script type="text/javascript" src="js1.js"></script>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <header class="hed1">
+      <div class="logo">
+        Вырастайка
+        <a href="#" class="l"><i class="fas fa-chevron-circle-left"></i></a>
+      </div>
+      <div class="kat_name">
+        Кожгалантерия
+      </div>
+      <div class="cart">
+        <div class="search">
+      <input type="text" name="searching" class="searching" placeholder="Поиск по разделу">
+      <i class="ic fas fa-search"></i>
+    </div>
+        <div class="l1">
+          <span class="col_tovs">0</span><i class="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+    </header>
+    <header class="hed2">
+      <div style="display: flex; width: 100%;">
+        <div style="width: 20vw; display: flex; flex-direction: column;">
+        <a href="#" class="h2_l">
+          <i class="fas fa-chevron-circle-left"></i>
+        </a>
+        <div class="h2_l1">
+            <span class="col_tovs">0</span><i class="fas fa-shopping-cart"></i>
+          </div>
+      </div>
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        
+      <div class="h2_logo">
+        Вырастайка
+      </div>
+        <div class="h2_cart">
+          <div class="h2_search">
+            <input type="text" name="searching" class="h2_searching" placeholder="Поиск по разделу">
+            <i class="h2_ic fas fa-search"></i>
+          </div>
+          
+        </div>
+      </div>
+      </div>
+    <div class="h2_kat_name">
+      Кожгалантерия
+    </div>
+    </header>
+    <div class="tovs">
+          <a href="#">
+            <div class="ui">
+              <div class="ui_photo">
+                <img src="img/sumk_1.jpg">
+              </div>
+              <div class="ui_text">
+                <h1>Сумка 1</h1>
+                <span>Артикль: 1409</span><br>
+                <span>Есть в наличии</span>
+                <span style="float: right;">1500 Руб</span>
+              </div>
+          </div>
+          </a>
+          <a href="#">
+            <div class="ui">
+              <div class="ui_photo">
+                <img src="img/sumk_2.jpg">
+              </div>
+              <div class="ui_text">
+                <h1>Сумка 2</h1>
+                <span>Артикль: 1409</span><br>
+                <span>Есть в наличии</span>
+                <span style="float: right;">1500 Руб</span>
+              </div>
+            </div>
+          </a>
+          <a href="#">
+            <div class="ui">
+              <div class="ui_photo">
+                <img src="img/sumk_3.jpg">
+              </div>
+              <div class="ui_text">
+                <h1>Сумка 3</h1>
+                <span>Артикль: 1409</span><br>
+                <span>Нет в наличии</span>
+                <span style="float: right;">1500 Руб</span>
+              </div>
+            </div>
+          </a>
+          <a href="#">
+            <div class="ui">
+              <div class="ui_photo">
+                <img src="img/sumk_4.jpg">
+              </div>
+              <div class="ui_text">
+                <h1>Сумка 4</h1>
+                <span>Артикль: 1409</span><br>
+                <span>Нет в наличии</span>
+                <span style="float: right;">1500 Руб</span>
+              </div>
+            </div>
+          </a>
+          <a href="#">
+            <div class="ui">
+              <div class="ui_photo">
+                <img src="img/sumk_5.jpg">
+              </div>
+              <div class="ui_text">
+                <h1>Сумка 5</h1>
+                <span>Артикль: 1409</span><br>
+                <span>Нет в наличии</span>
+                <span style="float: right;">1500 Руб</span>
+              </div>
+            </div>
+          </a>
+          <a href="#">
+            <div class="ui">
+              <div class="ui_photo">
+                <img src="img/kofta1.2.jpg">
+              </div>
+              <div class="ui_text">
+                <h1>Кофта 1</h1>
+                <span>Артикль: 1409</span><br>
+                <span>Есть в наличии</span>
+                <span style="float: right;">1500 Руб</span>
+              </div>
+            </div>
+          </a>
+          <a href="#">
+            <div class="ui">
+              <div class="ui_photo">
+                <img src="img/ui_im.jpg">
+              </div>
+              <div class="ui_text">
+                <h1>Сумка 6</h1>
+                <span>Артикль: 1409</span><br>
+                <span>Есть в наличии</span>
+                <span style="float: right;">1500 Руб</span>
+              </div>
+            </div>
+          </a>
+          <a href="#">
+            <div class="ui">
+              <div class="ui_photo">
+                <img src="img/ui_im.jpg">
+              </div>
+              <div class="ui_text">
+                <h1>Сумка 7 </h1>
+                <span>Артикль: 1409</span><br>
+                <span>Нет в наличии</span>
+                <span style="float: right;">1500 Руб</span>
+              </div>
+            </div>
+          </a>
+    </div>
+  
+
+
+  <footer class="f1">
+    <a href="#" class="dostavka">
+        <span id="d">О доставке</span>
+    </a>
+    <div class="kontakts">
+        Контакты:
+        <div class="l2">
+          <span style="position: relative;"><span class="post">Почта...</span><span class="post_after">administrator@virastaikatomsk.ru</span></span><br>
+          <span style="position: relative;"><span class="phone">Телефон...</span><span class="phone_after">+79050892388</span></span>
+        </div>
+    </div>
+    <div class="social">
+        Наши соц-сети:
+        <div class="l2">
+          <span>ВК: </span><a target="_blank" href="https://vk.com/virastaikatomsk"><i class="fab fa-vk"></i></a><br>
+          <span>Однокласники: </span><a target="_blank" href="https://ok.ru/profile/556729655231"><i class="fab fa-odnoklassniki"></i></a>
+        </div>
+    </div>
+  </footer>
+  <footer class="f2">
+    <a href="#" class="dostavka2">
+        <span id="d">О доставке</span>
+    </a>
+    <div class="konts">
+    <div class="kontakts2">
+        Контакты:
+        <div class="fl2">
+          <span style="position: relative;"><span class="post">Почта:</span>
+          <span class="post_after2">administrator@virastaikatomsk.ru</span>
+        </span><br>
+          <span style="position: relative;"><span class="phone">Телефон:</span>
+          <span class="phone_after2">+79050892388</span>
+        </span>
+        </div>
+    </div>
+    <div class="social2">
+        Наши соц-сети:
+        <div class="fl2">
+          <span>ВК: </span><a target="_blank" href="https://vk.com/virastaikatomsk"><i class="fab fa-vk"></i></a><br>
+          <span>Однокласники: </span><a target="_blank" href="https://ok.ru/profile/556729655231"><i class="fab fa-odnoklassniki"></i></a>
+        </div>
+    </div>
+    </div>
+  </footer>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
+  </body>
 </html>
