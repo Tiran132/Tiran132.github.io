@@ -1,0 +1,57 @@
+html{
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+body{
+	padding: 0;
+	margin: 0;
+	background-color: #bbb;
+}
+.inf{
+	width: 50%;
+	min-height: 100%;
+	margin: 10% auto;
+	padding: 10px;
+	background-color: #383838;
+	color: #eee;
+}
+#front{
+	z-index: -1;
+	position: fixed;
+	top: 8%;
+	left: 14%;
+	height: 100px;
+	width: 100px;
+	background-color: #d63031;
+	border-radius: 50%;
+}
+.mid{
+	z-index: -1;
+	position: fixed;
+	top: 20%;
+	left: 75%;
+	height: 140px;
+	width: 140px;
+	background-color: #f9d33f;
+	border-radius: 50%;
+}
+#under{
+	z-index: -1;
+	position: fixed;
+	top: 60%;
+	left: 80%;
+	height: 200px;
+	width: 200px;
+	background-color: #ffeaa7;
+	border-radius: 50%;
+}
+#gr{
+	z-index: -1;
+	position: fixed;
+	top: 65%;
+	left: 10%;
+	background-color: #4286f4;
+	height: 130px;
+	width: 130px;
+	border-radius: 50%;
+}
