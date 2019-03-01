@@ -1,0 +1,18 @@
+.container {
+		max-width: unset;
+	}
+	.body .container {
+		width: -moz-available;
+    	width: -webkit-fill-available;
+   		width: fill-available;
+	}
+	@media (max-width: 979px) and (min-width: 768px){
+		#login-form .input-small {
+   		width: 132px !important;
+		}
+	}
+	@media (max-width: 900px) and (min-width: 768px){
+		#login-form .input-small {
+   			width: 100px !important;
+		}
+	}
