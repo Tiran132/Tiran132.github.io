@@ -71,7 +71,7 @@ body{
 	font-weight: bold;
 }
 #head-text{
-	top: 50vh;
+	top: 40vh;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%);
@@ -82,7 +82,7 @@ body{
 	font-size: 20px;
 }
 #head-text2{
-	bottom: 60vh;
+	bottom: 40vh;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%);
