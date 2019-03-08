@@ -7,6 +7,12 @@ body{
 	margin: 0;
 	background-color: #bbb;
 }
+*{
+	font-family: "Stoked";
+}
+p{
+	font-family: sans-serif;
+}
 .inf{
 	width: 50%;
 	min-height: 100%;
@@ -54,4 +60,38 @@ body{
 	height: 130px;
 	width: 130px;
 	border-radius: 50%;
+}
+#head{
+	background-image: url(im.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100vh;
+	text-align: center;
+	color: #fff;
+	font-size: 30px;
+	width: 100%;
+	margin-bottom: 5%;
+	font-weight: bold;
+}
+#head-text{
+	top: 50vh;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	padding: 20px;
+	background-color: #000000dd;
+	text-align: center;
+	color: #eee;
+	font-size: 20px;
+}
+#head-text2{
+	bottom: 60vh;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	padding: 20px;
+	background-color: #000000dd;
+	text-align: center;
+	color: #eee;
+	font-size: 40px;
 }
