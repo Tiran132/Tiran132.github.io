@@ -8,6 +8,9 @@ body{
 	background-color: #bbb;
 }
 *{
+	font-family: "Stoked";
+}
+p{
 	font-family: sans-serif;
 }
 .inf{
@@ -71,7 +74,7 @@ body{
 	font-weight: bold;
 }
 #head-text{
-	top: 40vh;
+	top: 60vh;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%);
@@ -82,7 +85,7 @@ body{
 	font-size: 20px;
 }
 #head-text2{
-	bottom: 40vh;
+	bottom: 55vh;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%);
