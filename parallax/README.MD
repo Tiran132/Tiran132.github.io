@@ -1,5 +1,7 @@
 # What is Parallax effect?...
 https://ru.wikipedia.org/wiki/parallax
+**Example of parallax effect on github** https://github.com/error_page
+
 
 # Parallax.js
 With this library you can add parallax effect to any element of your page just in 3-5 lines!
