@@ -1,10 +1,12 @@
-let sq      = document.getElementsByClassName("sqeare")[0];
-let boxes   = document.getElementsByClassName('box');
-let overlay = document.getElementById("overlay");
-let sqeare  = [1, 2 ,3 ,4 ,5 ,6, 7, 8, 9];
-let paint   = [];
-let answer  = new Set();
+let sq       = document.getElementsByClassName("sqeare")[0];
+let boxes    = document.getElementsByClassName('box');
+let overlay  = document.getElementById("overlay");
+let score_div  = document.getElementById("score");
+let sqeare   = [1, 2 ,3 ,4 ,5 ,6, 7, 8, 9];
+let paint    = [];
+let answer   = new Set();
 let painting = new Set();
+let score    = 0;
 
 
 function equals(a, b) {
@@ -49,7 +51,7 @@ function rand(from, to){
 }
 
 function randPaint(){
-	sq.style.animation = "anim 2.4s linear forwards";
+	sq.style.animation = "anim 2.2s linear forwards";
 	sqeare  = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 	paint   = [];
 	answer  = new Set();
@@ -63,7 +65,7 @@ function randPaint(){
 		GetBox(b).style.backgroundColor = "#c82121";
 	}
 
-	setTimeout(clearing, 3000);
+	setTimeout(clearing, 2700);
 }
 
 
@@ -86,6 +88,8 @@ function aswr(num){
 randPaint()
 
 function NewGame(){
+	score++;
+	score_div.innerText = score;
 	sq.style.animation = "unset";
 	clearing();
 	setTimeout(randPaint, 200)

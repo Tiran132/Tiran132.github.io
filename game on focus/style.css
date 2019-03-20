@@ -39,7 +39,16 @@ body{
 	width: 100%;
 	z-index: 2;
 }
-
+#score{
+	position: absolute;
+	bottom: -60%;
+	width: 100%;
+	color: #fff;
+	font-size: 50pt;
+	text-align: center;
+	font-weight: bold;
+	font-family: sans-serif;
+}
 
 @media screen and (max-width: 800px){
 	.middle{
