@@ -51,7 +51,7 @@ function rand(from, to){
 }
 
 function randPaint(){
-	sq.style.animation = "anim 2.2s linear forwards";
+	sq.style.animation = "anim 1.6s linear forwards";
 	sqeare  = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 	paint   = [];
 	answer  = new Set();
@@ -65,7 +65,7 @@ function randPaint(){
 		GetBox(b).style.backgroundColor = "#c82121";
 	}
 
-	setTimeout(clearing, 2700);
+	setTimeout(clearing, 1800);
 }
 
 
