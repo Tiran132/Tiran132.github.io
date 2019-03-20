@@ -18,7 +18,7 @@ body{
 	height: 6vw;
 	width: 6vw;
 	background-color: #fff; /* Red: #c82121;*/
-	margin: 0.08vw;
+	margin: 0.05vw;
 	cursor: pointer;
 }
 .box button{
@@ -39,6 +39,18 @@ body{
 	width: 100%;
 	z-index: 2;
 }
+
+
+@media screen and (max-width: 800px){
+	.middle{
+		transform: translate(-50%, -50%) scale(1.1);
+	}
+	.box{
+		height: 15vw;
+		width: 15vw;
+	}
+}
+
 @keyframes anim{
 	to{
 		transform: rotate(180deg);
