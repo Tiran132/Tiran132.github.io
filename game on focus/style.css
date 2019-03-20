@@ -1,0 +1,46 @@
+body{
+	padding: 0;
+	margin: 0;
+	background-color: #226597;
+}
+.middle{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.sqeare{
+	transform: rotate(0);
+	animation: unset;
+}
+.box{
+	display: inline-block;
+	height: 6vw;
+	width: 6vw;
+	background-color: #fff; /* Red: #c82121;*/
+	margin: 0.08vw;
+	cursor: pointer;
+}
+.box button{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	transition: 0.3s ease;
+}
+.box button:hover{
+	background-color: rgba(0, 0, 0, 0.25);
+}
+#overlay{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+}
+@keyframes anim{
+	to{
+		transform: rotate(180deg);
+	}
+}
