@@ -1,0 +1,347 @@
+html
+{
+    overflow: hidden;
+}
+body
+{
+    font-family: sans-serif;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    background-color: #93d8de;
+}
+#instruction{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 11;
+	top: 0;
+	left: 0;
+	background-color: #eee;
+	font-weight: bold;
+	text-align: center;
+}
+#instruction button{
+	font-size: 30px;
+	background: #262626;
+	border: none;
+	color: #eee;
+	padding: 5px 20px;
+}
+#game-score
+{
+	font-weight: bold;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	font-size: 25px;
+	line-height: 30px;
+	background-color: #eee;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+#overlay
+{
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transition: 1s ease;
+
+    opacity: 0;
+    background-color: #000000aa;
+}
+/* Табло начало.*/
+#score
+{
+	font-weight: bold;
+    font-size: 5vh;
+    line-height: 5vh;
+    text-shadow: 1px 1px rgba(0, 0, 0, .2);
+
+    position: absolute;
+    z-index: 3;
+    top: -30vh;
+    left: 50%;
+
+    width: 30vw;
+    height: 20vh;
+
+    transition: 1.2s ease;
+    transform: translate(-50%);
+    text-align: center;
+
+    color: #eee;
+    background-color: #f0db4d;
+}
+#score::before
+{
+    position: absolute;
+    bottom: 95%;
+    left: 1vw;
+
+    width: 2px;
+    height: 30vh;
+
+    content: '';
+
+    background-color: #704d0d;
+}
+#score::after
+{
+    position: absolute;
+    right: 1vw;
+    bottom: 95%;
+
+    width: 2px;
+    height: 30vh;
+
+    content: '';
+
+    background-color: #704d0d;
+}
+/* Табло конец.*/
+/* Куб начало.*/
+.scene
+{
+	z-index: 12;
+    width: 100%;
+    height: 100%;
+    margin: 80px;
+
+    transform: translateX(-30%) translateY(-15%);;
+
+    perspective: 700px;
+}
+
+.cube
+{
+    position: relative;
+
+    width: 200px;
+    height: 200px;
+
+    transition: transform 1s;
+    transform: translateX(800px) translateY(350px);
+
+    transform-style: preserve-3d;
+}
+
+.cube.show-front
+{
+    transform: translateY(300px) translateZ(-100px) rotateY(25deg) rotateZ(0deg);
+}
+
+
+.cube__face
+{
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+}
+
+.cube__face--front
+{
+    background: #473421;
+}
+.cube__face--left
+{
+    background: #8c6d4c;
+}
+.cube__face--top
+{
+    background: #74b65f;
+}
+
+
+.cube__face--front
+{
+    height: 1000px;
+
+    transform: rotateY(0deg) translateZ(100px);
+}
+.cube__face--left
+{
+    height: 1000px;
+
+    transform: rotateY(-90deg) translateZ(100px);
+}
+.cube__face--top
+{
+    transform: rotateX( 90deg) translateZ(100px);
+}
+/* Куб конец.*/
+#field
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: -webkit-flex;
+    display:    -moz-flex;
+    display:     -ms-flex;
+    display:      -o-flex;
+    display:         flex;
+    /*	width: 70vw;
+	height: 70vw;*/
+
+    width: 200px;
+    height: 200px;
+
+    transform: translate(-50%, -50%);
+
+    background-color: #74b65f;
+
+    flex-wrap: wrap;
+}
+
+#field div
+{
+    position: relative;
+
+    transition: .2s ease;
+
+    flex: 25%;
+}
+#player_field
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 200px;
+    height: 200px;
+
+    transform: translate(-50%, -50%);
+}
+#player
+{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    width: 40px;
+    height: 40px;
+
+    transition: .2s ease;
+
+    border-radius: 50%;
+    background-color: #efe97c;
+}
+.oblako{
+	margin-left: 0;
+	z-index: -1;
+	position: absolute;
+	bottom: 2vh;
+	width: 12vw;
+	height: 8vh;
+	background-color: rgb(255, 255, 255, 0.6);
+	animation: oblak_animation 3s linear infinite;
+	transition: 1s ease;
+}
+
+.oblako:nth-child(1){
+	animation-delay: 0.1s;
+	bottom: 1.5vh;
+	left: -5%;
+}
+.oblako:nth-child(2){
+	animation-delay: 0.2s;
+	left: 13%;
+}
+.oblako:nth-child(3){
+	animation-delay: 0.3s;
+	bottom: 3vh;
+	left: 36%;
+}
+.oblako:nth-child(4){
+	animation-delay: 0.4s;
+	left: 44%;
+	z-index: 2;
+}
+.oblako:nth-child(5){
+	animation-delay: 0.5s;
+	bottom: 1vh;
+	left: 70%;
+}
+.oblako:nth-child(6){
+	animation-delay: 0.6s;
+	left: 90%;
+}
+.oblako:nth-child(7){
+	animation-delay: ;
+	left: 31%;
+	bottom: 10vh;
+	z-index: 2;
+}
+.oblako:nth-child(8){
+	left: 53%;
+	bottom: 12vh;
+}
+
+@keyframes oblak_animation{
+	from, to{
+		margin-left: 0;
+	}
+	50%{
+		margin-left: 1vh;
+	}
+}
+
+@media (min-device-width: 2000px){
+	.cube
+	{
+		transform: translateX(1450px) translateY(350px);
+	}
+	.scene 
+	{
+		transform: translateX(-30%);
+	    perspective: 1000px;
+	}
+	.cube__face {
+	    width: 500px;
+	    height: 500px;
+	}
+	.cube__face--front {
+	    height: 10000px;
+	    transform: rotateY( 0deg) translateZ(250px);
+	}
+	.cube__face--left {
+    	height: 10000px;
+    	transform: rotateY(-90deg) translateZ(250px);
+	}
+	.cube__face--top {
+    	transform: rotateX( 90deg) translateZ(250px);
+	}
+	#field {
+	    width: 500px;
+	    height: 500px;
+	}
+	#player_field {
+	    width: 500px;
+	    height: 500px;
+	}
+	#player {
+	    top: 15px;
+	    left: 15px;
+	    width: 100px;
+	    height: 100px;
+	}
+	#game-score{
+		padding: 30px;
+    	font-size: 50px;
+	}
+}
+@media (min-device-width: 1600px){
+	.scene 
+	{
+		transform: translateX(-52%) translateY(-15%);
+	}
+}

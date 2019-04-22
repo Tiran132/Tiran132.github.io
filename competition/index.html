@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div id="instruction">
+		<h1>Инструкция к игре: </h1>
+		<p>Вы находитесь на острове где вам нужно будет<br> наступать на белые участки при этом не выходя за рамки острова. </p>
+		<h3>Управление:</h3>
+		<p>
+			Вперёд - W<br>
+			Назад - S<br>
+			Влево - A<br>
+			Вправо - D
+		</p>
+		<button onclick="start()">Начать игру</button>
+	</div>
+	<div id="game-score">SCORE: 0</div>
+	<div id="overlay"></div>
+	<div id="score">
+	</div>
+	<div class="scene">
+  		<div class="cube">
+    		<div class="cube__face cube__face--front"></div>
+    		<div class="cube__face cube__face--left"></div>
+    		<div class="cube__face cube__face--top">
+    			<div id="field">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div id="player_field">
+					<div id="player"></div>
+				</div>
+    		</div>
+  		</div>
+	</div>
+	<div class="obloka">
+		<div class="oblako"></div>
+		<div class="oblako"></div>
+		<div class="oblako"></div>
+		<div class="oblako"></div>
+		<div class="oblako"></div>
+		<div class="oblako"></div>
+		<div class="oblako"></div>
+		<div class="oblako"></div>
+	</div>
+	<script type="text/javascript" src="code.js"></script>
+</body>
+</html>
