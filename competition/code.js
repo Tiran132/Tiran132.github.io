@@ -54,6 +54,8 @@ function update_field() {
 
 	field_divs[place].style.backgroundColor = "#eee";
 
+	speed();
+
 	setTimeout(function() {
 		if (checkCollusion()) {
 			score++;
@@ -122,6 +124,14 @@ function checkCollusion(){
 }
 
 
+// Белые блоеи генерируются быстрее.
+function speed() {
+	if (inter_speed > 800) {
+		inter_speed -= 80;	
+	}
+}
+
+
 // Конец Игры.
 function lose(arg) {
 	overlay.style.opacity = "1";
@@ -140,6 +150,7 @@ function lose(arg) {
 
 // Начало игры.
 function start(){
+	place = 0;
 	score = 0;
 
 	start_div.style.display = "none"
