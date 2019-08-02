@@ -2,8 +2,6 @@
 .content-menu{
 	margin: 0 30px 43px 30px;
 	border-radius: 5px;
-	height: 64px;
-	background-color: #ccc;
 	overflow: hidden;
 	box-shadow: 3px 14px 21px rgba(0, 0, 0, .55);
 }
@@ -11,14 +9,16 @@
 	height: 100%;
 	background-color: #d39b2e;
 	color: #fff;
-	border-right: 2px solid #fff;
+	border-right: 2px solid #005c41;
 	transition: .4s ease;
 	line-height: 64px;
 	text-align: center;
-	font-size: 24px;
+	font-size: 20px;
+	padding: 0;
+	text-decoration: none;
 }
 .content-menu .col:nth-last-child(1){
-	border-right: 0px solid #fff;
+	border-right: 0px solid #005c41;
 }
 
 .content-menu .col:hover{
@@ -154,6 +154,8 @@
 	top: 50%;
 	transform: translateY(-50%);
 	right: calc(100% + 15px);
+	opacity: 1;
+	transition: .3s ease;
 }
 .arrow-black-next{
 	left: calc(100% + 15px);
@@ -162,6 +164,11 @@
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%) rotate(180deg);
+	opacity: 1;
+	transition: .3s ease;
+}
+.arrow-black:hover, .arrow-black-next:hover{
+	opacity: .6;
 }
 /* --Carusel-- */
 .tvs-white-inf{
@@ -184,6 +191,7 @@
 	font-size: 20px;
 	border: none;
 	outline: none;
+	cursor: pointer;
 }
 .tvs-green{
 	height: 83px;
@@ -201,6 +209,8 @@
 }
 .tvs-back, .tvs-next{
 	position: relative;
+	color: #fff !important;
+	text-decoration: none;
 }
 .tvs-back img{
 	position: absolute;
@@ -210,5 +220,36 @@
 	position: absolute;
 	right: -46px;
 	transform: rotate(180deg);
+}
+
+@media (min-width: 1401px){
+	.tvs-one-product{
+		transform: translate(-50%, -50%);
+	}
+}
+@media (min-width: 1200px) and (max-width: 1400px) {
+	.tvs-one-product{
+		transform: translate(-50%, -50%) scale(0.8);
+	}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+	.tvs-one-product{
+		transform: translate(-50%, -50%) scale(0.8);
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.tvs-one-product{
+		transform: translate(-50%, -50%) scale(0.6);
+	}
+}
+@media (max-width: 767px) {
+	.tvs-one-product{
+		transform: translate(-50%, -50%) scale(0.5);
+	}
+
+@media (max-width: 480px) {
+		.tvs-one-product{
+		transform: translate(-50%, -50%) scale(0.3);
+	}
 }
 /* --One-- */
