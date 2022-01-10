@@ -1,0 +1,1236 @@
+[
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "offerId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum MarsBaseExchange.OfferType",
+              "name": "offerType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "tokenAlice",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "tokenBob",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "amountBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeBob",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "smallestChunkSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountRemaining",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsAlice",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderAddresses",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderTokens",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "offerer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "payoutAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bool[]",
+              "name": "capabilities",
+              "type": "bool[]"
+            },
+            {
+              "internalType": "bool",
+              "name": "active",
+              "type": "bool"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct MarsBaseExchange.MBOffer",
+          "name": "offer",
+          "type": "tuple"
+        }
+      ],
+      "name": "OfferAccepted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "offerId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum MarsBaseExchange.OfferType",
+              "name": "offerType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "tokenAlice",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "tokenBob",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "amountBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeBob",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "smallestChunkSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountRemaining",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsAlice",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderAddresses",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderTokens",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "offerer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "payoutAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bool[]",
+              "name": "capabilities",
+              "type": "bool[]"
+            },
+            {
+              "internalType": "bool",
+              "name": "active",
+              "type": "bool"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct MarsBaseExchange.MBOffer",
+          "name": "offer",
+          "type": "tuple"
+        }
+      ],
+      "name": "OfferCancelled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "offerId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum MarsBaseExchange.OfferType",
+              "name": "offerType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "tokenAlice",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "tokenBob",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "amountBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeBob",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "smallestChunkSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountRemaining",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsAlice",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderAddresses",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderTokens",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "offerer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "payoutAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bool[]",
+              "name": "capabilities",
+              "type": "bool[]"
+            },
+            {
+              "internalType": "bool",
+              "name": "active",
+              "type": "bool"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct MarsBaseExchange.MBOffer",
+          "name": "offer",
+          "type": "tuple"
+        }
+      ],
+      "name": "OfferCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "offerId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum MarsBaseExchange.OfferType",
+              "name": "offerType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "tokenAlice",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "tokenBob",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "amountBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeBob",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "smallestChunkSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountRemaining",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsAlice",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderAddresses",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderTokens",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "offerer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "payoutAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bool[]",
+              "name": "capabilities",
+              "type": "bool[]"
+            },
+            {
+              "internalType": "bool",
+              "name": "active",
+              "type": "bool"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct MarsBaseExchange.MBOffer",
+          "name": "offer",
+          "type": "tuple"
+        }
+      ],
+      "name": "OfferModified",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "offerId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum MarsBaseExchange.OfferType",
+              "name": "offerType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "tokenAlice",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "tokenBob",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "amountBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeBob",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "smallestChunkSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountRemaining",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsAlice",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderAddresses",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderTokens",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "offerer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "payoutAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bool[]",
+              "name": "capabilities",
+              "type": "bool[]"
+            },
+            {
+              "internalType": "bool",
+              "name": "active",
+              "type": "bool"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct MarsBaseExchange.MBOffer",
+          "name": "offer",
+          "type": "tuple"
+        }
+      ],
+      "name": "OfferPartiallyAccepted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "offers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum MarsBaseExchange.OfferType",
+          "name": "offerType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "tokenAlice",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountAlice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeAlice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeBob",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "smallestChunkSize",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountRemaining",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minimumSize",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "offerer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "payoutAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "active",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "setCurrentTime",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_minimumFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMinimumFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getOffer",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "offerId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum MarsBaseExchange.OfferType",
+              "name": "offerType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "tokenAlice",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "tokenBob",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "amountBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeBob",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "smallestChunkSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountRemaining",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsAlice",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderAddresses",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderTokens",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "offerer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "payoutAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bool[]",
+              "name": "capabilities",
+              "type": "bool[]"
+            },
+            {
+              "internalType": "bool",
+              "name": "active",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct MarsBaseExchange.MBOffer",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllOffers",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "offerId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum MarsBaseExchange.OfferType",
+              "name": "offerType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "tokenAlice",
+              "type": "address"
+            },
+            {
+              "internalType": "address[]",
+              "name": "tokenBob",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "amountBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeAlice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeBob",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "smallestChunkSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountRemaining",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumSize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsAlice",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "minimumOrderAmountsBob",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderAddresses",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address[]",
+              "name": "minimumOrderTokens",
+              "type": "address[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "offerer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "payoutAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bool[]",
+              "name": "capabilities",
+              "type": "bool[]"
+            },
+            {
+              "internalType": "bool",
+              "name": "active",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct MarsBaseExchange.MBOffer[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amountAlice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "offerAmountAlice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "offerAmountBob",
+          "type": "uint256"
+        }
+      ],
+      "name": "price",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAlice",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "tokenBob",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountAlice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "amountBob",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "fees",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "offerParameters",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "createOffer",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        }
+      ],
+      "name": "cancelOffer",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address[]",
+          "name": "tokenBob",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "amountBob",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "changeOfferPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address[]",
+          "name": "tokenBob",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "amountBob",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "smallestChunkSize",
+          "type": "uint256"
+        }
+      ],
+      "name": "changeOfferPricePart",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenBob",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountBob",
+          "type": "uint256"
+        }
+      ],
+      "name": "acceptOffer",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenBob",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountBob",
+          "type": "uint256"
+        }
+      ],
+      "name": "acceptOfferPart",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "offerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenBob",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountBob",
+          "type": "uint256"
+        }
+      ],
+      "name": "acceptOfferPartWithMinimum",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ]
