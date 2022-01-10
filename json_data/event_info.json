@@ -1,0 +1,13 @@
+{
+   "args":{
+      "previousOwner":"0x0000000000000000000000000000000000000000",
+      "newOwner":"0xAb6E5B3E04E00B58EB1B87E2e403102d2a4dC7C4"
+   },
+   "event":"OwnershipTransferred",
+   "logIndex":1,
+   "transactionIndex":5,
+   "transactionHash":"0x0db5670621e3be1f840cda511c3bc609bea764f0a66afdccbb92919f137b83c3",
+   "address":"0xCcCF2Fb4B674121526c6b60cF711c1791C0ffE84",
+   "blockHash":"0x67d2099221a6f565b9244b736a4b8b49f33242f3bbc20e3709cbc977e774f30b",
+   "blockNumber":9862938
+}
