@@ -1,0 +1,191 @@
+var PSO = {
+    /*
+     * Widget configuration
+     */
+    config: {
+        widgetUrl: "https:\/\/ssp.gosuslugi.ru\/sspwidget\/",
+        psoUrl: "https:\/\/ssp.gosuslugi.ru\/",
+        cmsUrl: "https:\/\/www.gosuslugi.ru\/api\/cms\/v3\/",
+        catalogApiUrl: "https:\/\/www.gosuslugi.ru\/api\/catalog\/v3\/",
+        ngApiUrl: "https:\/\/www.gosuslugi.ru\/api\/ng\/v1\/",
+        epguFaqUrl: "https:\/\/www.gosuslugi.ru\/help\/faq\/",
+        epguFaqPopularUrl: 'https://www.gosuslugi.ru/help/faq/popular',
+        mapUrl: 'https://esia.gosuslugi.ru/public/ra',
+        esiaUrl: "https:\/\/esia.gosuslugi.ru",
+        epguFeedbackUrl: "https:\/\/www.gosuslugi.ru\/feedback",
+        widgetContainer: "pso-webwidget-embedder",
+        wsChatUrl: "epgu-chat-nd1.rostelecom-cc.ru\/webChat\/WebSocket",
+        httpChatUrl: "epgu-chat-nd1.rostelecom-cc.ru\/webChat",
+        httpUrl: "epgu-chat-nd1.rostelecom-cc.ru",
+        widgetCommonFaqRefreshInterval: 600,
+        widgetChatTooltipsCloseInterval: 60,
+        widgetChatTooltipsMaxCount: 10,
+        platformType: (typeof SmartPhone !== 'undefined' ? ((SmartPhone.isAny() ? (SmartPhone.isPhone() ? 'MOB' : 'TAB') : 'DESK')) : 'DESK'),
+        chat: {
+            host: "epgu-chat-nd1.rostelecom-cc.ru",
+            http: {},
+            ws: {},
+            secure: true,
+            epguServicesMap: {"\/10050":24,"\/10051":22,"\/10052":23,"\/help\/news\/2021_07_01_8_17":51,"\/10070":22,"\/106396":32,"\/10600":12,"\/10623":51,"\/434403":51,"\/10624":51,"\/10625":51,"\/10002":27,"\/314764":28,"\/10005":22,"\/127020":11,"\/10042":31,"\/10066":12,"\/16587":30,"\/10001":25,"\/10082":35,"\/10061":39,"\/help\/news\/2021_07_15_payments_schoolchildren":51,"\/10081":34,"\/help\/news\/2021_07_01_pregnant":51,"\/help\/faq\/coronavirus":12,"\/help\/news\/2021_05_06_viplati_na_detey":51,"\/10999":36,"\/10057":29,"\/10059":26,"\/39737":33,"\/10056":9},
+            defaultType: 42,
+            allowedNonAuthorized: false
+        }
+    }
+};
+
+var _ocwidget = {};
+
+function callbackFunction(callback) {
+    var script = document.createElement('script');
+    script.setAttribute("src", PSO.config.widgetUrl + "js/bluebird.min.js");
+    (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script);
+    script.addEventListener("load", function () {
+        initPsoLoading();
+        callback()
+    });
+}
+if (window.Promise) {
+    initPsoLoading();
+}
+function initPsoLoading(){
+    PSO.loading = new Promise(
+        function (resolve, reject) {
+            // Localize jQuery variable
+            var jQuery,
+                widgetUrl = PSO.config.widgetUrl,
+                psoSources = {
+                    widgetHtml: {
+                        type: 'template',
+                        src: widgetUrl + 'widget-html?callback=?',
+                        successFunc: function (data, $) {
+                            if ($('#pso-widget-container').length === 0) {
+                                $("body").append("<div id='pso-widget-container'></div>");
+                            }
+                            $('#pso-widget-container').html(data.html);
+                        },
+                        isLoaded: false
+                    },
+                    widgetJs: {
+                        type: 'script',
+                        src: widgetUrl + 'js/widget.js',
+                        isLoaded: false
+                    },
+                    widgetCss: {
+                        type: 'css',
+                        src: widgetUrl + 'widget-css',
+                        isLoaded: false
+                    }
+                };
+            bootstrap();
+
+            /******** Load jQuery if not present *********/
+            function bootstrap() {
+                if (window.jQuery === undefined || window.jQuery.fn.jquery !== '3.1.1') {
+                    var script_tag = document.createElement('script');
+                    script_tag.setAttribute("type", "text/javascript");
+                    script_tag.setAttribute("src",  "https://gu-st.ru/content/Other/jquery.min.3.1.1.j_");
+                    script_tag.setAttribute("integrity", "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=");
+                    script_tag.setAttribute("crossorigin", "anonymous");
+                    if (script_tag.readyState) {
+                        script_tag.onreadystatechange = function () { // For old versions of IE
+                            if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                                scriptLoadHandler();
+                            }
+                        };
+                    } else {
+                        script_tag.onload = scriptLoadHandler;
+                    }
+                    // Try to find the head, otherwise default to the documentElement
+                    (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
+                }
+                else {
+                    // The jQuery version on the window is the one we want to use
+                    jQuery = window.jQuery;
+                    main();
+                }
+            }
+
+            /******** Called once jQuery has loaded ******/
+            function scriptLoadHandler() {
+                // Restore $ and window.jQuery to their previous values and store the
+                // new jQuery in our local jQuery variable
+                jQuery = window.jQuery.noConflict(true);
+                // Call our main function
+                main();
+            }
+
+            /******** Our main function ********/
+            function main() {
+                PSO.jq = jQuery;
+                var $ = PSO.jq;
+
+                loadSequence($);
+
+            }
+
+            function loadSequence($) {
+                loadCss();
+
+                function loadCss() {
+                    var source = psoSources.widgetCss;
+                    var css_link = $("<link>",
+                        {
+                            rel: "stylesheet",
+                            type: "text/css",
+                            href: source.src
+                        });
+                    css_link.appendTo('head');
+                    css_link.on('load', function () {
+                        tryResolvePromise(source);
+                        loadHtml();
+                    });
+                }
+
+                function loadHtml() {
+                    var source = psoSources.widgetHtml;
+                    $.getJSON(source.src, function (source) {
+                            return function (data) {
+                                if (source.successFunc) {
+                                    source.successFunc(data, $);
+                                }
+                                tryResolvePromise(source);
+                                loadJs();
+                            }
+                        }(source)
+                    ).fail(function (err) {
+                        throw new Error('Не удалось загрузить виджет! ' + (err.message || ''));
+                    });
+                }
+
+                function loadJs() {
+                    var source = psoSources.widgetJs;
+                    $.getScript(source.src, function () {
+                        tryResolvePromise(source);
+                    })
+                }
+
+            }
+
+            function tryResolvePromise(script) {
+                var promiseResolved = true;
+                script.isLoaded = true;
+                for (var key in psoSources) {
+                    if (psoSources.hasOwnProperty(key)) {
+                        var source = psoSources[key];
+                        if (source.isLoaded === false) {
+                            promiseResolved = false;
+                            break;
+                        }
+                    }
+                }
+                if (promiseResolved) {
+                    resolve();
+                }
+
+            }
+
+        });
+}
+
+
+//# sourceURL=bootstrap.js
