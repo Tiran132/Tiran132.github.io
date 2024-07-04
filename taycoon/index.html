@@ -1,0 +1,401 @@
+<html><head><base href="https://websim.ai/game/crypto-tycoon" /><title>CryptoTycoon: Build Your Digital Empire</title><style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f0f1e;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1, h2 {
+    color: #4db6ac;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  h1 { font-size: 2.5em; }
+  h2 { font-size: 1.8em; margin-top: 30px; }
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1a1a2e;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #4db6ac;
+  }
+  .bots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .bot {
+    background-color: #1a1a2e;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .bot:hover {
+    transform: translateY(-5px);
+  }
+  .bot-name {
+    font-weight: bold;
+    color: #4db6ac;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .bot-emoji {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  .bot-stats {
+    font-size: 0.9em;
+    margin: 10px 0;
+    color: #b0b0b0;
+  }
+  button {
+    background-color: #4db6ac;
+    color: #0f0f1e;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  button:disabled {
+    background-color: #2d2d3e;
+    cursor: not-allowed;
+    color: #6d6d7e;
+  }
+  .profit-animation {
+    position: fixed;
+    color: #4db6ac;
+    font-weight: bold;
+    pointer-events: none;
+    animation: float-up 2s ease-out;
+    opacity: 0;
+    font-size: 1.2em;
+  }
+  @keyframes float-up {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+  }
+  #clicker {
+    width: 120px;
+    height: 120px;
+    background-color: #4db6ac;
+    border-radius: 50%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #0f0f1e;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  }
+  #clicker:active {
+    transform: scale(0.95);
+  }
+  #boost-info {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+    color: #4db6ac;
+    font-weight: bold;
+  }
+  #stamina-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #1a1a2e;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  }
+  #stamina-fill {
+    height: 100%;
+    background-color: #4db6ac;
+    transition: width 0.1s linear;
+  }
+  .achievements {
+    background-color: #1a1a2e;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .achievement {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #2d2d3e;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  .achievement.unlocked {
+    background-color: #2e4e4b;
+  }
+  .achievement-icon {
+    font-size: 1.5em;
+    margin-right: 10px;
+    color: #4db6ac;
+  }
+  .achievement-info {
+    flex-grow: 1;
+  }
+  .achievement-name {
+    font-weight: bold;
+    color: #4db6ac;
+  }
+  .achievement-description {
+    font-size: 0.9em;
+    color: #b0b0b0;
+  }
+</style></head><body>
+<div class="container">
+  <h1>CryptoTycoon: Build Your Digital Empire</h1>
+  
+  <div class="stats">
+    <div class="stat">
+      <div>Balance</div>
+      <div class="stat-value">$<span id="balance">1000.00</span></div>
+    </div>
+    <div class="stat">
+      <div>Income per Minute</div>
+      <div class="stat-value">$<span id="income">0.00</span></div>
+    </div>
+    <div class="stat">
+      <div>Total Bots</div>
+      <div class="stat-value"><span id="totalBots">0</span></div>
+    </div>
+  </div>
+
+  <div id="boost-info">Boost: x<span id="boost-multiplier">1</span></div>
+  <div id="stamina-bar"><div id="stamina-fill"></div></div>
+  <div id="clicker">BOOST!</div>
+
+  <div class="bots-container">
+    <div class="bot">
+      <div class="bot-emoji">💰</div>
+      <div class="bot-name">Bitcoin Miner</div>
+      <div class="bot-stats">
+        Cost: $500<br>
+        Income: $5/min
+      </div>
+      <button onclick="buyBot('bitcoin', 500, 5)">Buy</button>
+      <div>Owned: <span id="bitcoinCount">0</span></div>
+    </div>
+    
+    <div class="bot">
+      <div class="bot-emoji">📊</div>
+      <div class="bot-name">Ethereum Trader</div>
+      <div class="bot-stats">
+        Cost: $1000<br>
+        Income: $12/min
+      </div>
+      <button onclick="buyBot('ethereum', 1000, 12)">Buy</button>
+      <div>Owned: <span id="ethereumCount">0</span></div>
+    </div>
+    
+    <div class="bot">
+      <div class="bot-emoji">🌾</div>
+      <div class="bot-name">DeFi Yield Farmer</div>
+      <div class="bot-stats">
+        Cost: $2500<br>
+        Income: $35/min
+      </div>
+      <button onclick="buyBot('defi', 2500, 35)">Buy</button>
+      <div>Owned: <span id="defiCount">0</span></div>
+    </div>
+    
+    <div class="bot">
+      <div class="bot-emoji">🖼️</div>
+      <div class="bot-name">NFT Flipper</div>
+      <div class="bot-stats">
+        Cost: $5000<br>
+        Income: $80/min
+      </div>
+      <button onclick="buyBot('nft', 5000, 80)">Buy</button>
+      <div>Owned: <span id="nftCount">0</span></div>
+    </div>
+  </div>
+
+  <h2>Achievements</h2>
+  <div class="achievements" id="achievements">
+    <!-- Achievements will be dynamically added here -->
+  </div>
+</div>
+
+<script>
+  let balance = 1000;
+  let income = 0;
+  let totalBots = 0;
+  let bots = {
+    bitcoin: { count: 0, income: 5 },
+    ethereum: { count: 0, income: 12 },
+    defi: { count: 0, income: 35 },
+    nft: { count: 0, income: 80 }
+  };
+  let boostMultiplier = 1;
+  let stamina = 100;
+  const maxStamina = 100;
+  const staminaDecreaseRate = 0.1;
+  const staminaIncreaseRate = 0.05;
+
+  let achievements = [
+    { id: 'first_bot', name: 'Baby Steps', description: 'Buy your first bot', icon: '🎉', unlocked: false },
+    { id: 'three_bots', name: 'Triple Threat', description: 'Own 3 bots', icon: '🏆', unlocked: false },
+    { id: 'ten_bots', name: 'Bot Master', description: 'Own 10 bots', icon: '🤖', unlocked: false },
+    { id: 'first_1000', name: 'Thousandaire', description: 'Reach $1,000 in income per minute', icon: '💸', unlocked: false }
+  ];
+
+  function updateDisplay() {
+    document.getElementById('balance').textContent = balance.toFixed(2);
+    document.getElementById('income').textContent = (income * boostMultiplier).toFixed(2);
+    document.getElementById('totalBots').textContent = totalBots;
+    document.getElementById('boost-multiplier').textContent = boostMultiplier.toFixed(1);
+    document.getElementById('stamina-fill').style.width = `${stamina}%`;
+    for (let bot in bots) {
+      document.getElementById(bot + 'Count').textContent = bots[bot].count;
+    }
+    checkAchievements();
+  }
+
+  function buyBot(type, cost, incomePerMin) {
+    if (balance >= cost) {
+      balance -= cost;
+      bots[type].count++;
+      totalBots++;
+      income += incomePerMin;
+      updateDisplay();
+    } else {
+      alert("Not enough funds to buy this bot!");
+    }
+  }
+
+  function generateIncome() {
+    let profit = (income * boostMultiplier) / 60;
+    balance += profit;
+    animateProfit(profit);
+    updateDisplay();
+  }
+
+  function animateProfit(amount) {
+    let animation = document.createElement('div');
+    animation.textContent = '+$' + amount.toFixed(2);
+    animation.className = 'profit-animation';
+    animation.style.left = Math.random() * window.innerWidth + 'px';
+    animation.style.top = Math.random() * window.innerHeight + 'px';
+    document.body.appendChild(animation);
+    setTimeout(() => {
+      document.body.removeChild(animation);
+    }, 2000);
+  }
+
+  function boost() {
+    if (stamina > 0) {
+      boostMultiplier = 1 + (stamina / 100);
+      stamina = Math.max(0, stamina - 10);
+      updateDisplay();
+    }
+  }
+
+  function updateStamina() {
+    if (boostMultiplier > 1) {
+      stamina = Math.max(0, stamina - staminaDecreaseRate);
+      boostMultiplier = 1 + (stamina / 100);
+    } else {
+      stamina = Math.min(maxStamina, stamina + staminaIncreaseRate);
+    }
+    updateDisplay();
+  }
+
+  function checkAchievements() {
+    if (totalBots >= 1 && !achievements[0].unlocked) unlockAchievement('first_bot');
+    if (totalBots >= 3 && !achievements[1].unlocked) unlockAchievement('three_bots');
+    if (totalBots >= 10 && !achievements[2].unlocked) unlockAchievement('ten_bots');
+    if (income >= 1000 && !achievements[3].unlocked) unlockAchievement('first_1000');
+  }
+
+  function unlockAchievement(id) {
+    let achievement = achievements.find(a => a.id === id);
+    if (achievement && !achievement.unlocked) {
+      achievement.unlocked = true;
+      updateAchievementDisplay(achievement);
+      alert(`Achievement Unlocked: ${achievement.name}`);
+    }
+  }
+
+  function updateAchievementDisplay(achievement) {
+    let achievementElement = document.getElementById(achievement.id);
+    if (achievementElement) {
+      achievementElement.classList.add('unlocked');
+    }
+  }
+
+  function initAchievements() {
+    let achievementsContainer = document.getElementById('achievements');
+    achievements.forEach(achievement => {
+      let achievementElement = document.createElement('div');
+      achievementElement.id = achievement.id;
+      achievementElement.className = 'achievement';
+      achievementElement.innerHTML = `
+        <div class="achievement-icon">${achievement.icon}</div>
+        <div class="achievement-info">
+          <div class="achievement-name">${achievement.name}</div>
+          <div class="achievement-description">${achievement.description}</div>
+        </div>
+      `;
+      achievementsContainer.appendChild(achievementElement);
+    });
+  }
+
+  document.getElementById('clicker').addEventListener('click', boost);
+
+  // Generate income every second
+  setInterval(generateIncome, 1000);
+
+  // Update stamina every millisecond
+  setInterval(updateStamina, 1);
+
+  // Initialize achievements
+  initAchievements();
+
+  // Initial display update
+  updateDisplay();
+</script>
+
+<a href="https://websim.ai/game/strategy">More Strategy Games</a>
+<a href="https://websim.ai/game/crypto-exchange">Trade Real Crypto</a>
+<a href="https://websim.ai/learn/algorithmic-trading">Learn Algorithmic Trading</a>
+
+</body></html>
