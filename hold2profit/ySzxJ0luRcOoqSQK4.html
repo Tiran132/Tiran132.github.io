@@ -1,0 +1,346 @@
+<html><head><base href="https://websim.ai/c/fingertrade" />
+  <title>FingerTrade: Volatile Market Trading Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      touch-action: none;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    #game-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #chart {
+      width: 100%;
+      height: 70%;
+      position: relative;
+      border-bottom: 2px solid #333;
+      overflow: hidden;
+    }
+    #line {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background-color: #4CAF50;
+      transition: transform 0.2s ease-out;
+    }
+    #price-indicator {
+      position: absolute;
+      right: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: transform 0.2s ease-out;
+    }
+    #score {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+    }
+    #timer {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+    }
+    #message {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .position-marker {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid;
+      transition: all 0.3s ease;
+    }
+    .long-marker {
+      background-color: rgba(0, 255, 0, 0.7);
+      border-color: #00FF00;
+    }
+    .short-marker {
+      background-color: rgba(255, 0, 0, 0.7);
+      border-color: #FF0000;
+    }
+    #trend-indicator {
+      position: absolute;
+      top: 50px;
+      left: 10px;
+      font-size: 18px;
+      color: #FFA500;
+    }
+    #instructions {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    #start-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    @keyframes blink-bg {
+      0% { background-color: #1a1a1a; }
+      50% { background-color: #3a0000; }
+      100% { background-color: #1a1a1a; }
+    }
+    .blink {
+      animation: blink-bg 0.5s infinite;
+    }
+    #trade-areas {
+      display: flex;
+      height: 30%;
+    }
+    .trade-area {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #long-area {
+      background-color: rgba(0, 255, 0, 0.2);
+    }
+    #short-area {
+      background-color: rgba(255, 0, 0, 0.2);
+    }
+    .trade-area:active {
+      transform: scale(0.95);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .pulse {
+      animation: pulse 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="chart">
+      <div id="line"></div>
+      <div id="price-indicator">$1000</div>
+    </div>
+    <div id="trade-areas">
+      <div id="long-area" class="trade-area">LONG</div>
+      <div id="short-area" class="trade-area">SHORT</div>
+    </div>
+    <div id="score">Score: $0</div>
+    <div id="timer">Time: 30s</div>
+    <div id="trend-indicator">Trend: Neutral</div>
+    <div id="message"></div>
+    <div id="instructions">
+      <h2>How to Play FingerTrade</h2>
+      <p>1. Touch and hold LONG or SHORT area to open a position</p>
+      <p>2. Release to close the position</p>
+      <p>3. LONG profits when price rises, SHORT when it falls</p>
+      <p>4. Watch the trend indicator for market direction</p>
+      <p>5. Trade before the timer runs out</p>
+      <p>6. Warning: Background blinks when time is low!</p>
+      <button id="start-button">Start Game</button>
+    </div>
+  </div>
+
+  <script>
+    const chart = document.getElementById('chart');
+    const line = document.getElementById('line');
+    const priceIndicator = document.getElementById('price-indicator');
+    const scoreElement = document.getElementById('score');
+    const timerElement = document.getElementById('timer');
+    const messageElement = document.getElementById('message');
+    const trendIndicator = document.getElementById('trend-indicator');
+    const instructions = document.getElementById('instructions');
+    const startButton = document.getElementById('start-button');
+    const body = document.body;
+    const longArea = document.getElementById('long-area');
+    const shortArea = document.getElementById('short-area');
+
+    let score = 0;
+    let timeLeft = 30;
+    let gameInterval;
+    let positionStartY;
+    let positionStartTime;
+    let currentPosition = null;
+    let trend = 0;
+    let priceMovement = 0;
+    let isLongPosition = false;
+    let currentPrice = 1000;
+
+    function updatePrice() {
+      if (Math.random() < 0.2) {
+        trend = (Math.random() * 2 - 1) * 2; // More extreme trends
+      }
+
+      const trendStrength = 1.2;
+      const randomFactor = 0.8;
+      priceMovement = (trend * trendStrength + (Math.random() - 0.5) * randomFactor) * 20;
+
+      const currentY = parseFloat(line.style.transform.replace('translateY(', '').replace('px)', '')) || 0;
+      const newY = Math.max(Math.min(currentY + priceMovement, chart.clientHeight - 4), 0);
+      line.style.transform = `translateY(${newY}px)`;
+
+      currentPrice += priceMovement;
+      priceIndicator.textContent = `$${Math.round(currentPrice)}`;
+      priceIndicator.style.transform = `translateY(${newY}px)`;
+
+      if (currentPosition) {
+        const priceDifference = positionStartY - newY;
+        const timeDifference = (Date.now() - positionStartTime) / 1000;
+        const profit = isLongPosition ? -priceDifference : priceDifference;
+        score += profit * timeDifference / 2;
+        scoreElement.textContent = `Score: $${Math.round(score)}`;
+        currentPosition.style.transform = `scale(${1 + Math.abs(profit) / 1000})`;
+      }
+
+      updateTrendIndicator();
+      animatePriceChange(priceMovement);
+    }
+
+    function animatePriceChange(change) {
+      priceIndicator.classList.remove('pulse');
+      void priceIndicator.offsetWidth; // Trigger reflow
+      priceIndicator.classList.add('pulse');
+      priceIndicator.style.color = change > 0 ? '#00FF00' : '#FF0000';
+    }
+
+    function updateTrendIndicator() {
+      let trendText;
+      let color;
+      if (trend < -1) {
+        trendText = "Extremely Bearish";
+        color = "#FF0000";
+      } else if (trend < -0.5) {
+        trendText = "Strongly Bearish";
+        color = "#FF4500";
+      } else if (trend < 0) {
+        trendText = "Bearish";
+        color = "#FFA500";
+      } else if (trend === 0) {
+        trendText = "Neutral";
+        color = "#FFFFFF";
+      } else if (trend < 0.5) {
+        trendText = "Bullish";
+        color = "#90EE90";
+      } else if (trend < 1) {
+        trendText = "Strongly Bullish";
+        color = "#00FF00";
+      } else {
+        trendText = "Extremely Bullish";
+        color = "#00FF00";
+      }
+      trendIndicator.textContent = `Trend: ${trendText}`;
+      trendIndicator.style.color = color;
+    }
+
+    function startGame() {
+      instructions.style.display = 'none';
+      score = 0;
+      currentPrice = 1000;
+      resetTimer();
+      trend = 0;
+      scoreElement.textContent = 'Score: $0';
+      messageElement.textContent = 'Trade by touching LONG or SHORT!';
+      updateTrendIndicator();
+
+      line.style.transform = `translateY(${chart.clientHeight / 2}px)`;
+      priceIndicator.style.transform = `translateY(${chart.clientHeight / 2}px)`;
+
+      gameInterval = setInterval(() => {
+        updatePrice();
+        timeLeft--;
+        timerElement.textContent = `Time: ${timeLeft}s`;
+
+        if (timeLeft <= 5) {
+          body.classList.add('blink');
+        } else {
+          body.classList.remove('blink');
+        }
+
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 200);
+    }
+
+    function resetTimer() {
+      timeLeft = 30;
+      timerElement.textContent = 'Time: 30s';
+      body.classList.remove('blink');
+    }
+
+    function endGame() {
+      clearInterval(gameInterval);
+      messageElement.textContent = `Game Over! Final Score: $${Math.round(score)}`;
+      instructions.style.display = 'block';
+      startButton.textContent = 'Play Again';
+      body.classList.remove('blink');
+    }
+
+    function createPositionMarker(x, y, isLong) {
+      const marker = document.createElement('div');
+      marker.className = `position-marker ${isLong ? 'long-marker' : 'short-marker'}`;
+      marker.style.left = `${x - 15}px`;
+      marker.style.top = `${y - 15}px`;
+      chart.appendChild(marker);
+      return marker;
+    }
+
+    function startPosition(e, isLong) {
+      if (gameInterval) {
+        const touch = e.touches[0];
+        positionStartY = parseFloat(line.style.transform.replace('translateY(', '').replace('px)', '')) || 0;
+        positionStartTime = Date.now();
+        isLongPosition = isLong;
+        currentPosition = createPositionMarker(touch.clientX, touch.clientY, isLong);
+      }
+    }
+
+    function endPosition() {
+      if (currentPosition) {
+        currentPosition.remove();
+        currentPosition = null;
+        resetTimer();
+      }
+    }
+
+    longArea.addEventListener('touchstart', (e) => startPosition(e, true));
+    shortArea.addEventListener('touchstart', (e) => startPosition(e, false));
+    longArea.addEventListener('touchend', endPosition);
+    shortArea.addEventListener('touchend', endPosition);
+
+    startButton.addEventListener('click', startGame);
+  </script>
+</body></html>
