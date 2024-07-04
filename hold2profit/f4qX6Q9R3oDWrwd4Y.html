@@ -1,0 +1,252 @@
+<html><head><base href="https://websim.ai/c/fingertrade" />
+  <title>FingerTrade: Strategic Market Trading Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      touch-action: none;
+      user-select: none;
+    }
+    #game-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #chart {
+      width: 100%;
+      height: 80%;
+      position: relative;
+    }
+    #line {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background-color: #4CAF50;
+      transition: transform 0.3s ease-out;
+    }
+    #score {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+    }
+    #timer {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+    }
+    #message {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .position-marker {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: rgba(255, 165, 0, 0.7);
+      border: 2px solid #FFA500;
+    }
+    #trend-indicator {
+      position: absolute;
+      top: 50px;
+      left: 10px;
+      font-size: 18px;
+      color: #FFA500;
+    }
+    #instructions {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    #start-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="chart">
+      <div id="line"></div>
+    </div>
+    <div id="score">Score: $0</div>
+    <div id="timer">Time: 30s</div>
+    <div id="trend-indicator">Trend: Neutral</div>
+    <div id="message"></div>
+    <div id="instructions">
+      <h2>How to Play FingerTrade</h2>
+      <p>1. Touch and hold to buy a position</p>
+      <p>2. Release to sell the position</p>
+      <p>3. Make profits by buying low and selling high</p>
+      <p>4. Watch the trend indicator for market direction</p>
+      <p>5. Sell before the timer runs out</p>
+      <button id="start-button">Start Game</button>
+    </div>
+  </div>
+
+  <script>
+    const chart = document.getElementById('chart');
+    const line = document.getElementById('line');
+    const scoreElement = document.getElementById('score');
+    const timerElement = document.getElementById('timer');
+    const messageElement = document.getElementById('message');
+    const trendIndicator = document.getElementById('trend-indicator');
+    const instructions = document.getElementById('instructions');
+    const startButton = document.getElementById('start-button');
+
+    let score = 0;
+    let timeLeft = 30;
+    let gameInterval;
+    let positionStartY;
+    let positionStartTime;
+    let currentPosition = null;
+    let trend = 0;
+    let priceMovement = 0;
+
+    function updatePrice() {
+      // Update trend
+      if (Math.random() < 0.1) {
+        trend = Math.random() * 2 - 1; // Random value between -1 and 1
+      }
+
+      // Calculate price movement
+      const trendStrength = 0.7;
+      const randomFactor = 0.3;
+      priceMovement = (trend * trendStrength + (Math.random() - 0.5) * randomFactor) * 10;
+
+      const currentY = parseFloat(line.style.transform.replace('translateY(', '').replace('px)', '')) || 0;
+      const newY = Math.max(Math.min(currentY + priceMovement, chart.clientHeight - 4), 0);
+      line.style.transform = `translateY(${newY}px)`;
+
+      if (currentPosition) {
+        const priceDifference = positionStartY - newY;
+        const timeDifference = (Date.now() - positionStartTime) / 1000;
+        const profit = priceDifference * timeDifference / 3;
+        score += profit;
+        scoreElement.textContent = `Score: $${Math.round(score)}`;
+      }
+
+      updateTrendIndicator();
+    }
+
+    function updateTrendIndicator() {
+      let trendText;
+      let color;
+      if (trend < -0.5) {
+        trendText = "Strongly Bearish";
+        color = "#FF0000";
+      } else if (trend < -0.2) {
+        trendText = "Bearish";
+        color = "#FF4500";
+      } else if (trend < 0.2) {
+        trendText = "Neutral";
+        color = "#FFA500";
+      } else if (trend < 0.5) {
+        trendText = "Bullish";
+        color = "#90EE90";
+      } else {
+        trendText = "Strongly Bullish";
+        color = "#00FF00";
+      }
+      trendIndicator.textContent = `Trend: ${trendText}`;
+      trendIndicator.style.color = color;
+    }
+
+    function startGame() {
+      instructions.style.display = 'none';
+      score = 0;
+      resetTimer();
+      trend = 0;
+      scoreElement.textContent = 'Score: $0';
+      messageElement.textContent = 'Trade with your finger!';
+      updateTrendIndicator();
+
+      // Set initial price to the center of the screen
+      line.style.transform = `translateY(${chart.clientHeight / 2}px)`;
+
+      gameInterval = setInterval(() => {
+        updatePrice();
+        timeLeft--;
+        timerElement.textContent = `Time: ${timeLeft}s`;
+
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 200);
+    }
+
+    function resetTimer() {
+      timeLeft = 30;
+      timerElement.textContent = 'Time: 30s';
+    }
+
+    function endGame() {
+      clearInterval(gameInterval);
+      messageElement.textContent = `Game Over! Final Score: $${Math.round(score)}`;
+      instructions.style.display = 'block';
+      startButton.textContent = 'Play Again';
+    }
+
+    function createPositionMarker(x, y) {
+      const marker = document.createElement('div');
+      marker.className = 'position-marker';
+      marker.style.left = `${x - 15}px`;
+      marker.style.top = `${y - 15}px`;
+      chart.appendChild(marker);
+      return marker;
+    }
+
+    chart.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      if (gameInterval) {
+        const touch = e.touches[0];
+        positionStartY = parseFloat(line.style.transform.replace('translateY(', '').replace('px)', '')) || 0;
+        positionStartTime = Date.now();
+        currentPosition = createPositionMarker(touch.clientX, touch.clientY);
+      }
+    });
+
+    chart.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (currentPosition) {
+        const touch = e.touches[0];
+        currentPosition.style.left = `${touch.clientX - 15}px`;
+        currentPosition.style.top = `${touch.clientY - 15}px`;
+      }
+    });
+
+    chart.addEventListener('touchend', () => {
+      if (currentPosition) {
+        currentPosition.remove();
+        currentPosition = null;
+        resetTimer(); // Reset timer after selling
+      }
+    });
+
+    startButton.addEventListener('click', startGame);
+  </script>
+</body></html>
