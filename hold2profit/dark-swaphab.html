@@ -1,0 +1,387 @@
+<!DOCTYPE html><html><head><base href="https://aytok.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AyTok Trading Bots Shop</title>
+<style>
+    :root {
+        --primary-color: #00f2ea;
+        --secondary-color: #ff0050;
+        --bg-color: #000000;
+        --text-color: #ffffff;
+        --card-bg: #121212;
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.3s ease;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .navbar {
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+    .navbar-brand {
+        font-size: 28px;
+        font-weight: bold;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .shop-title {
+        text-align: center;
+        font-size: 36px;
+        margin-top: 80px;
+        margin-bottom: 40px;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .bot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    .bot-card {
+        background-color: var(--card-bg);
+        border-radius: 15px;
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .bot-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 242, 234, 0.1);
+    }
+    .bot-icon {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+    .bot-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .bot-description {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .bot-details {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .bot-detail {
+        text-align: center;
+    }
+    .bot-detail-label {
+        font-size: 12px;
+        color: #888;
+    }
+    .bot-detail-value {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .buy-button {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        color: var(--bg-color);
+        border: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .buy-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 0, 80, 0.3);
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .fade-in {
+        animation: fadeIn 0.5s ease-in;
+    }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-brand">SWAPHAB</div>
+</div>
+
+<div class="container">
+    <h1 class="shop-title fade-in">Trading Bots Shop</h1>
+    <div class="bot-grid">
+        <div class="bot-card fade-in">
+            <div class="bot-icon">🤖</div>
+            <h2 class="bot-name">Trading Bot BTC/USDT</h2>
+            <p class="bot-description">Generates 1000 HAB every 4 hours</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Passive</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">1000 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">10000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-1')">Buy Now</button>
+        </div>
+        
+        <div class="bot-card fade-in">
+            <div class="bot-icon">🤖</div>
+            <h2 class="bot-name">ETH/USDT Analyst Robot</h2>
+            <p class="bot-description">Collects market data and increases profits by 2000 HAB every 4 hours</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Passive</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">2000 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">25000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-2')">Buy Now</button>
+        </div>
+        
+        <div class="bot-card fade-in">
+            <div class="bot-icon">🚀</div>
+            <h2 class="bot-name">HFT Speed Robot</h2>
+            <p class="bot-description">Uses high-frequency trading algorithms, giving 10000 HAB every 4 hours, but requires manual activation</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Active</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">10000 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">75000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-3')">Buy Now</button>
+        </div>
+        
+        <div class="bot-card fade-in">
+            <div class="bot-icon">🛠️</div>
+            <h2 class="bot-name">Technician Robot</h2>
+            <p class="bot-description">Services other robots, increasing their efficiency by 10% and bringing 600 HAB every 4 hours</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Passive</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">600 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">8000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-4')">Buy Now</button>
+        </div>
+        
+        <div class="bot-card fade-in">
+            <div class="bot-icon">💡</div>
+            <h2 class="bot-name">AI Analyst Robot</h2>
+            <p class="bot-description">Uses artificial intelligence for market analysis and can give 20000 HAB per activation (once every 4 hours)</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Active</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">20000 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">150000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-5')">Buy Now</button>
+        </div>
+        
+        <!-- Additional bots -->
+        <div class="bot-card fade-in">
+            <div class="bot-icon">⚙️</div>
+            <h2 class="bot-name">Portfolio Manager Robot</h2>
+            <p class="bot-description">Optimizes asset portfolio and brings 4000 HAB every 4 hours for stable risk management</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Passive</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">4000 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">50000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-6')">Buy Now</button>
+        </div>
+        
+        <div class="bot-card fade-in">
+            <div class="bot-icon">🔥</div>
+            <h2 class="bot-name">Speculator Robot</h2>
+            <p class="bot-description">Works in volatile markets, can bring 6000 HAB per activation, but has a chance of failure and loss of 2000 HAB</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Active</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">6000 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">12000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-7')">Buy Now</button>
+        </div>
+        
+        <div class="bot-card fade-in">
+            <div class="bot-icon">💰</div>
+            <h2 class="bot-name">Arbitrage Robot</h2>
+            <p class="bot-description">Finds price discrepancies on different exchanges and brings stable 1600 HAB every 4 hours</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Passive</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">1600 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">18000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-8')">Buy Now</button>
+        </div>
+        
+        <div class="bot-card fade-in">
+            <div class="bot-icon">🔒</div>
+            <h2 class="bot-name">Staker Robot</h2>
+            <p class="bot-description">Participates in cryptocurrency staking, providing 3000 HAB every 4 hours, but can't be sold or turned off for 24 hours</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Passive</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">3000 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">35000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-9')">Buy Now</button>
+        </div>
+        
+        <div class="bot-card fade-in">
+            <div class="bot-icon">🌐</div>
+            <h2 class="bot-name">Global Trading Robot</h2>
+            <p class="bot-description">Works on all major markets simultaneously, giving 40000 HAB per activation (once every 4 hours)</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Active</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">40000 HAB</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">300000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('robot-10')">Buy Now</button>
+        </div>
+        
+        <div class="bot-card fade-in">
+            <div class="bot-icon">📈</div>
+            <h2 class="bot-name">Market Analysis</h2>
+            <p class="bot-description">Improves your ability to predict market trends</p>
+            <div class="bot-details">
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Type</div>
+                    <div class="bot-detail-value">Profit Multiplier</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Value</div>
+                    <div class="bot-detail-value">x5</div>
+                </div>
+                <div class="bot-detail">
+                    <div class="bot-detail-label">Price</div>
+                    <div class="bot-detail-value">20000 HAB</div>
+                </div>
+            </div>
+            <button class="buy-button" onclick="buyBot('profit-multiplier-1')">Buy Now</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function buyBot(botKey) {
+    // Here you would implement the logic to purchase the bot
+    // For now, we'll just show an alert
+    alert(`You've initiated the purchase of the bot with key: ${botKey}`);
+    // In a real implementation, you would:
+    // 1. Check if the user is logged in
+    // 2. Verify if the user has enough HAB to make the purchase
+    // 3. Make an API call to process the purchase
+    // 4. Update the user's inventory and HAB balance
+    // 5. Show a success message or error if something goes wrong
+}
+
+// You can add more JavaScript functionality here as needed
+</script>
+
+</body></html>
