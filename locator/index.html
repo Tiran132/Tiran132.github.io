@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вывод IP адреса</title>
+    <script>
+        async function getUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                document.getElementById('ip').textContent = `Ваш IP адрес: ${data.ip}`;
+            } catch (error) {
+                console.error('Ошибка получения IP адреса:', error);
+                document.getElementById('ip').textContent = 'Не удалось получить IP адрес';
+            }
+        }
+
+        window.onload = getUserIP;
+    </script>
+  <script>
+        // Функция для получения информации о пользователе из Telegram
+        function getUserInfo() {
+            // Получаем параметры из URL
+            const params = new URLSearchParams(window.location.search);
+            const user = JSON.parse(decodeURIComponent(params.get('user')));
+
+            // Проверка на наличие информации о пользователе
+            if (user && user.first_name && user.last_name && user.username) {
+                document.getElementById('userInfo').innerHTML = `
+                    <h2>Информация о пользователе:</h2>
+                    <p>Имя: ${user.first_name}</p>
+                    <p>Фамилия: ${user.last_name}</p>
+                    <p>Никнейм: @${user.username}</p>
+                `;
+            } else {
+                document.getElementById('userInfo').textContent = 'Не удалось получить информацию о пользователе';
+            }
+        }
+
+        window.onload = getUserInfo;
+    </script>
+</head>
+<body>
+    <h1>Добро пожаловать на сайт!</h1>
+    <div id="userInfo">Получение информации о пользователе...</div>
+    <p id="ip">Получение IP адреса...</p>
+</body>
+</html>
+
