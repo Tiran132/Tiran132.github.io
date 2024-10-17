@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Всё о тебе знаю</title>
+    <script src="https://telegram.org/js/telegram-web-app.js?2"></script>
     <script>
         async function getUserIP() {
             try {
@@ -16,25 +17,26 @@
             }
         }
 
-        // Функция для получения информации о пользователе из Telegram
         function getUserInfo() {
-            // Получаем параметры из URL
-            const params = new URLSearchParams(window.location.search);
-            const user = JSON.parse(decodeURIComponent(params.get('user')));
+            // Получаем информацию о пользователе
+            const user = Telegram.WebApp.initDataUnsafe.user;
 
             // Проверка на наличие информации о пользователе
-            if (user && user.first_name && user.last_name && user.username) {
+            if (user) {
+                const firstName = user.first_name || 'Не указано';
+                const lastName = user.last_name || 'Не указано';
+                const username = user.username ? `@${user.username}` : 'Не указан';
+
                 document.getElementById('userInfo').innerHTML = `
                     <h2>Информация о пользователе:</h2>
-                    <p>Имя: ${user.first_name}</p>
-                    <p>Фамилия: ${user.last_name}</p>
-                    <p>Никнейм: @${user.username}</p>
+                    <p>Имя: ${firstName}</p>
+                    <p>Фамилия: ${lastName}</p>
+                    <p>Никнейм: ${username}</p>
                 `;
             } else {
                 document.getElementById('userInfo').textContent = 'Не удалось получить информацию о пользователе';
             }
-        }
-      
+        };
       
         window.onload = () => {
           getUserIP()
