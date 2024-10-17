@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вывод IP адреса</title>
+    <title>Всё о тебе знаю</title>
     <script>
         async function getUserIP() {
             try {
@@ -16,9 +16,6 @@
             }
         }
 
-        window.onload = getUserIP;
-
-        
         // Функция для получения информации о пользователе из Telegram
         function getUserInfo() {
             // Получаем параметры из URL
@@ -37,8 +34,12 @@
                 document.getElementById('userInfo').textContent = 'Не удалось получить информацию о пользователе';
             }
         }
-
-        window.onload = getUserInfo;
+      
+      
+        window.onload = () => {
+          getUserIP()
+          getUserInfo();
+        };
     </script>
 </head>
 <body>
