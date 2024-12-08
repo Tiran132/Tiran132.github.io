@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+</head>
+<body>
+    <h1>Добро пожаловать в Mini App</h1>
+    <button id="payButton">Оплатить</button>
+
+    <script>
+        // Ожидаем загрузки скрипта Telegram WebApp
+        window.onload = function() {
+            // Проверка на инициализацию Telegram Web App
+            if (window.Telegram && window.Telegram.WebApp) {
+                // Инициализация Telegram WebApp
+                const webApp = window.Telegram.WebApp;
+
+                // Получаем initData (передаваемые данные)
+                const initData = webApp.initData;
+                const initDataUnsafe = webApp.initDataUnsafe;
+
+                // Для безопасности, перед использованием данных с initData, они должны быть проверены на сервере.
+                // Здесь мы просто выведем их в консоль для примера.
+                console.log("initData:", initData);
+                console.log("initDataUnsafe:", initDataUnsafe);
+
+                // Получаем версию и платформу
+                console.log("Bot API Version:", webApp.version);
+                console.log("Platform:", webApp.platform);
+                console.log("Color Scheme:", webApp.colorScheme);
+
+                // Устанавливаем обработчик на кнопку "Оплатить"
+                const paymentUrl = new URLSearchParams(window.location.search).get("payment_url");
+                if (!paymentUrl) {
+                    alert("Ошибка: Не указан URL для оплаты.");
+                }
+
+                document.getElementById('payButton').addEventListener('click', function() {
+                    if (paymentUrl) {
+                        // Открытие ссылки вне встроенного браузера Telegram
+                        webApp.openLink(paymentUrl);
+                    } else {
+                        alert("Ошибка: Не указан URL для оплаты.");
+                    }
+                });
+            }
+        };
+    </script>
+</body>
+</html>
