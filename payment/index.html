@@ -35,30 +35,42 @@ body {
     transform: translateY(0);
 }
 </style>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 </head>
 <body>
 
-<button class="payment-button" onclick="handlePayment()">Оплатить</button>
-
+<h1>Для опплаты нажмите кнопку </h1>
+<button class="payment-button" id="payButton">Оплатить</button>
 <script>
-function handlePayment() {
-    // Получаем payment_url из параметров URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const paymentUrl = urlParams.get('payment_url');
-    
-    if (paymentUrl) {
-        // Открываем внешнее окно по платежной ссылке
-        if (typeof webapp !== 'undefined' && webapp.openLink) {
-            webapp.openLink(paymentUrl);
-        } else {
-            // Fallback для тестирования в обычном браузере
-            window.open(paymentUrl, '_blank');
-        }
-    } else {
-        console.error('Payment URL not provided');
-        alert('Ошибка: платежная ссылка не указана');
-    }
-}
-</script>
+        window.onload = function() {
+            // Проверяем, что Telegram Web App доступен
+            if (window.Telegram && window.Telegram.WebApp) {
+                const webApp = window.Telegram.WebApp;
+
+                console.log(webApp)
+                // Получаем данные и выводим их для примера
+                const initData = webApp.initData;
+                console.log("initData:", initData);
+
+                // Получаем параметр payment_url из URL страницы
+                const paymentUrl = new URLSearchParams(window.location.search).get("payment_url");
+
+                // Проверка наличия payment_url
+                if (!paymentUrl) {
+                    alert("Ошибка: Не указан URL для оплаты.");
+                }
+
+                // Обработчик кнопки "Оплатить"
+                document.getElementById('payButton').addEventListener('click', function() {
+                    if (paymentUrl) {
+                        // Открытие ссылки вне встроенного браузера Telegram
+                        webApp.openLink(paymentUrl);  // Без try_instant_view, откроется во внешнем браузере
+                    } else {
+                        alert("Ошибка: Не указан URL для оплаты.");
+                    }
+                });
+            }
+        };
+    </script>
 
 </body></html>
