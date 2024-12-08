@@ -64,7 +64,7 @@ body {
                 document.getElementById('payButton').addEventListener('click', function() {
                     if (paymentUrl) {
                         // Открытие ссылки вне встроенного браузера Telegram
-                        webApp.openLink(paymentUrl);  // Без try_instant_view, откроется во внешнем браузере
+                        webApp.openLink(paymentUrl, {try_instant_view: false});
                     } else {
                         alert("Ошибка: Не указан URL для оплаты.");
                     }
